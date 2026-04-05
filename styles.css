@@ -202,3 +202,19 @@ body {
     border-radius: 0;
   }
 }
+.profile-container {
+   display: flex; align-items: center;
+  }
+.allergen-item {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-bottom: 1px solid #ddd;
+}
+.warn-notice {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font: inherit;
+  font-weight: 800;
+}
