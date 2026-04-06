@@ -246,9 +246,10 @@ body {
 .allergen-item {
   display: flex;
   align-items: center;
-  padding: 4px;
+  padding: 0px;
   border-bottom: 1px solid #ddd;
 }
+
 .warn-notice {
   border: 0;
   border-radius: 999px;
@@ -256,7 +257,41 @@ body {
   font: inherit;
   font-weight: 800;
 }
+.warn-notice-fill {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font: inherit;
+  font-weight: 800;
+  display: block; 
+  width: 100%;   
+  padding: 14px;
+}
 .bold-italic {
   font-weight: bold;
   font-style: italic;
+}.search-container {
+  display: flex;
+  max-width: 1000px;
+}
+
+input[type="search"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  width: 75%;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Three equal columns */
+  gap: 20px;                             /* Spacing between items */
+  list-style: none;                      /* Remove bullets */
+  padding: 0;                            /* Remove default padding */
+  overflow-y: auto;
+  height: 140px;
+  
+}
+a {
+    text-decoration: none;
 }

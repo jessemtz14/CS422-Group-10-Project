@@ -38,7 +38,9 @@
               
                <div style="display: flex; align-items: center; padding: 0px; border-bottom: 1px solid #ddd;"">
                   <h3 class="card-label">My Allergies</h3>
-                  <button class="warn-notice" style="margin-left: auto;">Edit</button>
+                  <form style="margin-left: auto;"action="edit-allergy.html">
+                    <button class="warn-notice" style="margin-left: auto;">Edit✏️</button>
+                  </form>
                </div>
               <ul style="list-style-type: none; padding: 0; margin: 0;">
                 
@@ -54,11 +56,14 @@
           </article>
 
           <article class="card card-highlight">
-            <h3 class="card-label">Emergency Contact</h3>
-            <ul class="feature-list">
-              <h2 class="card-label-hard">Sarah Doe (Mother)</h3>
+            <div style="display: flex; align-items: center; padding: 0px; border-bottom: 1px solid #ddd;"">
+                  <h3 class="card-label">Emergency Contact</h3>
+                    <button class="warn-notice" style="margin-left: auto;">Edit✏️</button>
+               </div>
+            <div class="feature-list">
+              <h3 class="card-label-hard">Sarah Doe (Mother)</h3>
               <h3 class="card-label">(773) 123-4567</h3>
-            </ul>
+            </div>
           </article>
           <form action="allergy-card.html">
          <button class="primary-button">View Allergy Card</button>
