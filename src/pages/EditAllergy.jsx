@@ -58,11 +58,11 @@ useEffect(() => {
               type="search"
               placeholder="Search..."
               value={input}
+              style={{width:"100%"}}
               onChange={(e) => setInput(e.target.value)}
             />
-            <button className="warn-notice">🔍</button>
             <ul className="grid-container">
-              {allergiesData.map((item, i) => (
+              {allergiesData.filter(x =>  x.toLowerCase().includes(input.toLowerCase())).map((item, i) => (
                   <li key={i} className="allergen-item">
                     <button
                       className="warn-notice-fill"
