@@ -11,10 +11,10 @@ export default function AllergyCard() {
       <StatusBar />
 
       <section className="content">
-        <article className="card card-highlight-gray">
-          <h1 className="card card-highlight-alert" style={{ textAlign: "center" }}>
+        <article className="card card-highlight-gray" style={{maxHeight: 650, overflow: 'auto'}}>
+          <h2 className="card card-highlight-alert" style={{ textAlign: "center" }}>
             ALLERGY ALERT
-          </h1>
+          </h2>
 
           <h2 className="card-label-hard">John Doe</h2>
           <h3 className="card-label-hard">Date of Birth: Jan 15, 2007</h3>
