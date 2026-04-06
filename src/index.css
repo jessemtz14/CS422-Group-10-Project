@@ -292,6 +292,16 @@ input[type="search"] {
   height: 140px;
   
 }
+.grid-container2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Three equal columns */
+  gap: 0px;                             /* Spacing between items */
+  list-style: none;     
+  list-style-type: none;                  /* Remove bullets */
+  padding: 0;                            /* Remove default padding */
+  overflow-y: auto;
+  
+}
 a {
     text-decoration: none;
 }

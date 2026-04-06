@@ -2,7 +2,9 @@ import PhoneFrame from "../components/PhoneFrame";
 import StatusBar from "../components/StatusBar";
 import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
-
+import AllergyListMicro from "../components/AllergyListMicro"
+import { Link } from "react-router-dom";
+ 
 export default function Home() {
   return (
     <PhoneFrame>
@@ -15,9 +17,13 @@ export default function Home() {
 
       <section className="content">
         <article className="card card-highlight">
-          <p className="card-label">Active Allergies</p>
-          <h2>Replace this with list of allergies</h2>
-          <button className="primary-button">View</button>
+          <div style={{ display: "flex", alignItems: "center", borderBottom: "1px solid #ddd" }}>
+            <h3 className="card-label">Active Allergies</h3>
+            <Link to="/edit-allergy" style={{ marginLeft: "auto" }}>
+              <button className="warn-notice">Edit✏️</button>
+            </Link>
+          </div>
+          <AllergyListMicro/>
         </article>
 
         <article className="card">
