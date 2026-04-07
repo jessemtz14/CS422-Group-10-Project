@@ -28,7 +28,13 @@ export default function Profile() {
 
       <section className="content">
         <article className="card card-highlight">
-          <div style={{ display: "flex", alignItems: "center", borderBottom: "1px solid #ddd" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              borderBottom: "1px solid #ddd",
+            }}
+          >
             <h3 className="card-label">My Allergies</h3>
             <Link to="/edit-allergy" style={{ marginLeft: "auto" }}>
               <button className="warn-notice">Edit✏️</button>
@@ -38,17 +44,24 @@ export default function Profile() {
           <AllergyList />
         </article>
         <article className="card card-highlight">
-            <div style={{display: "flex", alignItems: "center", padding: "0px", borderBottom: "1px solid #ddd"}}>
-                  <h3 className="card-label">Emergency Contact</h3>
-                   <Link to="/profile" style={{ marginLeft: "auto" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "0px",
+              borderBottom: "1px solid #ddd",
+            }}
+          >
+            <h3 className="card-label">Emergency Contact</h3>
+            <Link to="/profile" style={{ marginLeft: "auto" }}>
               <button className="warn-notice">Edit✏️</button>
             </Link>
-            </div>
-            <div className="feature-list">
-              <h3 className="card-label-hard">Sarah Doe (Mother)</h3>
-              <h3 className="card-label">(773) 123-4567</h3>
-            </div>
-          </article>
+          </div>
+          <div className="feature-list">
+            <h3 className="card-label-hard">Sarah Doe (Mother)</h3>
+            <h3 className="card-label">(773) 123-4567</h3>
+          </div>
+        </article>
         <Link to="/allergy-card">
           <button className="primary-button">View Allergy Card</button>
         </Link>

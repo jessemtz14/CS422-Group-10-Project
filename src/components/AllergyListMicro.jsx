@@ -4,7 +4,10 @@ export default function AllergyListMicro() {
   const { allergies } = useAllergies();
 
   return (
-    <ul className="grid-container2" style={{ listStyle: "d", padding: 0, maxHeight: 150 }}>
+    <ul
+      className="grid-container2"
+      style={{ listStyle: "d", padding: 0, maxHeight: 150 }}
+    >
       {allergies.map((item, i) => (
         <li key={i} className="allergen-item">
           <span

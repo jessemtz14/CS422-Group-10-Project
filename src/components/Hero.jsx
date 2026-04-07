@@ -1,10 +1,15 @@
 import { NavLink } from "react-router-dom";
 
-function Title({t, back}) {
-  if(back != undefined) {
-    return  <h1><NavLink to={back}>← </NavLink>{t}</h1>
+function Title({ t, back }) {
+  if (back != undefined) {
+    return (
+      <h1>
+        <NavLink to={back}>← </NavLink>
+        {t}
+      </h1>
+    );
   }
-  return  <h1>{t}</h1>
+  return <h1>{t}</h1>;
 }
 
 export default function Hero({ eyebrow, title, children, back }) {
