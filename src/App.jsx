@@ -14,15 +14,15 @@ export default function App() {
     <AllergyProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/CS422-Group-10-Project/" element={<Home />} />
-          <Route path="/CS422-Group-10-Project/scan" element={<Scan />} />
-          <Route path="/CS422-Group-10-Project/search" element={<Search />} />
-          <Route path="/CS422-Group-10-Project/places" element={<Places />} />
-          <Route path="/CS422-Group-10-Project/profile" element={<Profile />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/scan" element={<Scan />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/places" element={<Places />} />
+          <Route path="/profile" element={<Profile />} />
           {/* is inside Profile section */}
-          <Route path="/CS422-Group-10-Project/edit-allergy" element={<EditAllergy />} />{" "}
+          <Route path="/edit-allergy" element={<EditAllergy />} />{" "}
           {/* is inside Profile section */}
-          <Route path="/CS422-Group-10-Project/allergy-card" element={<AllergyCard />} />{" "}
+          <Route path="/allergy-card" element={<AllergyCard />} />{" "}
         </Routes>
       </BrowserRouter>
     </AllergyProvider>
