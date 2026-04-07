@@ -40,16 +40,27 @@ export default function Home() {
         </article>
 
         <article className="card">
-          <p className="card-label">Screen Sections</p>
+          <p className="card-label">Recent Activity</p>
           <ul className="feature-list">
-            <li>Header / branding area</li>
-            <li>Main content card</li>
-            <li>Action button</li>
-            <li>Bottom navigation</li>
+            <li>Updated allergy profile</li>
+            <li>Scanned: Peanut butter - Not Safe ❌</li>
+            <li>Searched: Dairy products</li>
+            <li>Scanned: Almons Milk - Contains allergens ⚠️</li>
           </ul>
         </article>
       </section>
-
+      <div className="stats-card">
+        <a className="stat" href="#scan">
+          <span className="primary-button" type="button">
+            Scan
+          </span>
+        </a>
+        <a className="search" href="#search">
+          <span className="primary-button" type="button">
+            Search
+          </span>
+        </a>
+      </div>
       <BottomNav />
     </PhoneFrame>
   );
