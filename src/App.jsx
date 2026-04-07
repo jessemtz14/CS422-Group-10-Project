@@ -12,7 +12,7 @@ import Places from "./pages/Places";
 export default function App() {
   return (
     <AllergyProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/CS422-Group-10-Project/">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/scan" element={<Scan />} />
