@@ -1,6 +1,7 @@
 import PhoneFrame from "../components/PhoneFrame";
 import StatusBar from "../components/StatusBar";
 import BottomNav from "../components/BottomNav";
+import { useAllergies } from "../context/AllergyContext";
 import { useState } from "react";
 
 const PRODUCTS = [
@@ -27,6 +28,16 @@ const PRODUCTS = [
 
 export default function Scan() {
   const [scanResult, setScanResult] = useState(null);
+  const { addActivity } = useAllergies();
+
+  function handleScan(product) {
+    setScanResult(product);
+    if (product.safe) {
+      addActivity("📷", `Scanned: ${product.name}`, "Safe", "#2E7D32", "#C8E6C9");
+    } else {
+      addActivity("📷", `Scanned: ${product.name}`, "Unsafe", "firebrick", "#FF9191");
+    }
+  }
 
   // Camera view
   if (!scanResult) {
@@ -51,7 +62,7 @@ export default function Scan() {
           {PRODUCTS.map((p) => (
             <div
               key={p.id}
-              onClick={() => setScanResult(p)}
+              onClick={() => handleScan(p)}
               className="card"
               style={{ cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
             >
@@ -90,7 +101,6 @@ export default function Scan() {
       </section>
 
       <section className="content" style={{ overflow: "auto" }}>
-        {/* Safe / Unsafe banner */}
         {p.safe ? (
           <div className="scan-banner scan-banner-safe">
             <span style={{ fontSize: "2rem" }}>✅</span>
@@ -109,14 +119,12 @@ export default function Scan() {
           </div>
         )}
 
-        {/* Product info */}
         <article className="card card-highlight">
           <p className="card-label">Product</p>
           <h2 style={{ margin: "4px 0 2px", fontSize: "1.1rem" }}>{p.name}</h2>
           <p style={{ margin: 0, color: "var(--muted)", fontSize: "0.85rem" }}>{p.subtitle}</p>
         </article>
 
-        {/* Detected allergens or safe confirmation */}
         {p.safe ? (
           <article className="card" style={{ border: "2px solid #C8E6C9" }}>
             <h3 style={{ color: "#2E7D32", fontSize: "0.95rem", marginBottom: 8 }}>✅ No Allergens Detected</h3>

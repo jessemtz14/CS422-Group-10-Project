@@ -2,6 +2,7 @@ import PhoneFrame from "../components/PhoneFrame";
 import StatusBar from "../components/StatusBar";
 import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
+import { useAllergies } from "../context/AllergyContext";
 import { useState } from "react";
 
 const RESTAURANTS = [
@@ -48,6 +49,13 @@ const RESTAURANTS = [
 export default function Places() {
   const [selected, setSelected] = useState(null);
   const [activePin, setActivePin] = useState(null);
+  const { addActivity } = useAllergies();
+
+  function selectRestaurant(r) {
+    setSelected(r);
+    const statusLabel = r.safety === "Safe" ? "Safe" : r.safety === "Caution" ? "Caution" : "Unsafe";
+    addActivity("📍", `Viewed: ${r.name}`, statusLabel, r.safetyColor, r.safetyBg);
+  }
 
   // Restaurant detail view
   if (selected) {
@@ -164,7 +172,7 @@ export default function Places() {
             key={r.letter}
             className="card"
             style={{ cursor: "pointer" }}
-            onClick={() => setSelected(r)}
+            onClick={() => selectRestaurant(r)}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>

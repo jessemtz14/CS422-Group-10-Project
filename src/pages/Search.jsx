@@ -2,6 +2,7 @@ import PhoneFrame from "../components/PhoneFrame";
 import StatusBar from "../components/StatusBar";
 import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
+import { useAllergies } from "../context/AllergyContext";
 import { useState } from "react";
 
 // Food database
@@ -184,6 +185,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [selectedFood, setSelectedFood] = useState(null);
   const [recentSearches, setRecentSearches] = useState(["Praline", "Marzipan"]);
+  const { addActivity } = useAllergies();
 
   const results = query.length > 0
     ? FOODS.filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
@@ -195,6 +197,10 @@ export default function Search() {
       const filtered = prev.filter((s) => s !== food.name);
       return [food.name, ...filtered].slice(0, 5);
     });
+    const statusLabel = food.safety === "safe" ? "Safe" : food.safety === "unsafe" ? "Avoid" : "Caution";
+    const statusColor = food.safety === "safe" ? "#2E7D32" : food.safety === "unsafe" ? "firebrick" : "#7B6B00";
+    const statusBg = food.safety === "safe" ? "#C8E6C9" : food.safety === "unsafe" ? "#FF9191" : "#FFF9C4";
+    addActivity("🔍", `Searched: ${food.name}`, statusLabel, statusColor, statusBg);
   }
 
   // Detail view
