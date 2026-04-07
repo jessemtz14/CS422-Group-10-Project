@@ -50,7 +50,6 @@ export default function Home() {
           </ul>
         </article>
       </section>
-<<<<<<< HEAD
       <div className="stats-card">
         <a className="stat" href="#scan">
           <span className="primary-button" type="button">
@@ -63,9 +62,7 @@ export default function Home() {
           </span>
         </a>
       </div>
-=======
 
->>>>>>> fec9ecbb727a2cc36febdf1cdbd7b806575c4143
       <BottomNav />
     </PhoneFrame>
   );
