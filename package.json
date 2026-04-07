@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jessemtz14.github.io/CS422-Group-10-Project/",
+  "homepage": "https://DGC9Crew.github.io/CS422-Group-10-Project/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

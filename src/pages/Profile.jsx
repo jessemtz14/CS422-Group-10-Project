@@ -19,7 +19,7 @@ export default function Profile() {
               className="profile-icon"
             />
             <div>
-              <h2>John Doe</h2>
+              <h2>John Boe</h2>
               <h3>johndoe@gmail.com</h3>
             </div>
           </div>
