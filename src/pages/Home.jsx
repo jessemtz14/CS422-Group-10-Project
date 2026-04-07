@@ -47,10 +47,10 @@ export default function Home() {
             <li>Searched: Dairy products</li>
 
             <li>Scanned: Almond Milk - Contains allergens ⚠️</li>
-            
           </ul>
         </article>
       </section>
+
       <BottomNav />
     </PhoneFrame>
   );
