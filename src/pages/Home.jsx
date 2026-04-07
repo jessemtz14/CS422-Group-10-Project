@@ -47,22 +47,9 @@ export default function Home() {
             <li>Searched: Dairy products</li>
 
             <li>Scanned: Almond Milk - Contains allergens ⚠️</li>
-            
           </ul>
         </article>
       </section>
-      <div className="stats-card">
-        <a className="stat" href="#scan">
-          <span className="primary-button" type="button">
-            Scan
-          </span>
-        </a>
-        <a className="search" href="#search">
-          <span className="primary-button" type="button">
-            Search
-          </span>
-        </a>
-      </div>
 
       <BottomNav />
     </PhoneFrame>
