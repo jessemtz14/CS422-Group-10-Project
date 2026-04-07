@@ -15,12 +15,14 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/edit-allergy" element={<EditAllergy />} />
-          <Route path="/allergy-card" element={<AllergyCard />} />
           <Route path="/scan" element={<Scan />} />
           <Route path="/search" element={<Search />} />
           <Route path="/places" element={<Places />} />
+          <Route path="/profile" element={<Profile />} />
+          {/* is inside Profile section */}
+          <Route path="/edit-allergy" element={<EditAllergy />} />{" "}
+          {/* is inside Profile section */}
+          <Route path="/allergy-card" element={<AllergyCard />} />{" "}
         </Routes>
       </BrowserRouter>
     </AllergyProvider>
