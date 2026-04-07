@@ -208,12 +208,24 @@ body {
   padding-left: 18px;
   color: var(--muted);
   line-height: 1.7;
+  font-size: 1.1rem;
 }
 
 .stats-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+}
+stats-card a{
+  width: 100%;
+}
+
+.stats-card .primary-button {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 56px;
 }
 
 .stat {
