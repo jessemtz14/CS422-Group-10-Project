@@ -45,6 +45,7 @@ export default function Home() {
             <li>Updated allergy profile</li>
             <li>Scanned: Peanut butter - Not Safe ❌</li>
             <li>Searched: Dairy products</li>
+<<<<<<< HEAD
             <li>Scanned: Almond Milk - Contains allergens ⚠️</li>
             
           </ul>
@@ -63,6 +64,12 @@ export default function Home() {
         </a>
       </div>
 
+=======
+            <li>Scanned: Almons Milk - Contains allergens ⚠️</li>
+          </ul>
+        </article>
+      </section>
+>>>>>>> 3a557b1609cdc3041646de89c406da4fba6b80a5
       <BottomNav />
     </PhoneFrame>
   );
