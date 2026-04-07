@@ -9,12 +9,18 @@ export default function Home() {
   return (
     <PhoneFrame>
       <StatusBar />
-      <Hero eyebrow="Class Project" title="Allergy Ward">
-        <p className="hero-copy">
-          This is an allergy management app designed to help users track and
-          manage their allergies.
-        </p>
+      <Hero title="Allergy Ward">
+        <p className="hero-copy">Hi, John 👋🏻</p>
       </Hero>
+
+      <div className="home-actions">
+        <Link to="/scan" className="btn-action btn-scan">
+          📸 Scan Item
+        </Link>
+        <Link to="/search" className="btn-action btn-lookup">
+          🔍 Look Up
+        </Link>
+      </div>
 
       <section className="content">
         <article className="card card-highlight">
@@ -44,6 +50,7 @@ export default function Home() {
           </ul>
         </article>
       </section>
+<<<<<<< HEAD
       <div className="stats-card">
         <a className="stat" href="#scan">
           <span className="primary-button" type="button">
@@ -56,6 +63,9 @@ export default function Home() {
           </span>
         </a>
       </div>
+=======
+
+>>>>>>> fec9ecbb727a2cc36febdf1cdbd7b806575c4143
       <BottomNav />
     </PhoneFrame>
   );
