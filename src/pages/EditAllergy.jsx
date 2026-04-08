@@ -31,7 +31,7 @@ export default function EditAllergy() {
   return (
     <PhoneFrame>
       <StatusBar />
-      <Hero eyebrow="Class Project" title="Edit Allergies" back="/profile" />
+      <Hero title="Edit Allergies" back="/profile" />
 
       <section className="content">
         <article className="card card-highlight">

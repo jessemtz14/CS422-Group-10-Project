@@ -9,7 +9,7 @@ export default function Profile() {
   return (
     <PhoneFrame>
       <StatusBar />
-      <Hero eyebrow="Class Project" title="My Profile">
+      <Hero title="My Profile">
         <div className="card card-highlight">
           <div className="profile-container">
             <img
@@ -19,7 +19,7 @@ export default function Profile() {
               className="profile-icon"
             />
             <div>
-              <h2>John Boe</h2>
+              <h2>John Doe</h2>
               <h3>johndoe@gmail.com</h3>
             </div>
           </div>
