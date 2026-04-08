@@ -179,6 +179,75 @@ const FOODS = [
     ],
     alternatives: "Seed-based trail mix, Dried fruit mix, Pretzels and raisins",
   },
+    {
+    name: "Apple",
+    desc: "Common fresh fruit",
+    icon: "🍎",
+    safety: "safe",
+    safetyLabel: "SAFE FOR ALLERGY",
+    safetyNote: "No nuts or common allergens",
+    about: "Apples are a naturally nut-free fruit. They are safe for people with tree nut and peanut allergies. Always wash before eating.",
+    risks: [
+      { flavor: "Plain / Fresh", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
+    ],
+    alternatives: "Any fresh fruit, Pear, Banana",
+  },
+  {
+    name: "Potato Chips",
+    desc: "Salted crispy snack",
+    icon: "🥔",
+    safety: "safe",
+    safetyLabel: "SAFE FOR ALLERGY",
+    safetyNote: "Plain varieties are typically nut-free",
+    about: "Plain potato chips are generally nut-free and safe for those with tree nut or peanut allergies. Always check the label for flavored varieties as some may be processed in facilities that handle nuts.",
+    risks: [
+      { flavor: "Plain / Original", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
+      { flavor: "Flavored varieties", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
+    ],
+    alternatives: "Pretzels, Rice cakes, Popcorn",
+  },
+  {
+    name: "Peanut Butter",
+    desc: "Spread made from ground peanuts",
+    icon: "🥜",
+    safety: "unsafe",
+    safetyLabel: "NOT SAFE",
+    safetyNote: "Contains peanuts",
+    about: "Peanut butter is made entirely from ground peanuts. It is one of the most common allergen sources and is not safe for anyone with a peanut allergy. It may also be processed near tree nuts.",
+    risks: [
+      { flavor: "Peanut Content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
+      { flavor: "Cross-contact with tree nuts", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
+    ],
+    alternatives: "SunButter (sunflower seed), Tahini, Biscoff spread",
+  },
+  {
+    name: "Almond Milk",
+    desc: "Plant-based milk alternative",
+    icon: "🥛",
+    safety: "unsafe",
+    safetyLabel: "NOT SAFE",
+    safetyNote: "Made from almonds (tree nut)",
+    about: "Almond milk is made by blending almonds with water. Since almonds are a tree nut, almond milk is not safe for anyone with a tree nut allergy. It is commonly found in coffee shops and used as a dairy substitute.",
+    risks: [
+      { flavor: "Almond Content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
+      { flavor: "Cross-contact in facilities", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
+    ],
+    alternatives: "Oat milk, Rice milk, Coconut milk (check label), Soy milk",
+  },
+  {
+    name: "Sunflower Seeds",
+    desc: "Roasted seed snack",
+    icon: "🌻",
+    safety: "safe",
+    safetyLabel: "SAFE FOR ALLERGY",
+    safetyNote: "Seeds are not tree nuts or peanuts",
+    about: "Sunflower seeds are naturally free from tree nuts and peanuts, making them a great snack alternative. They are also commonly used as a base for nut-free spreads like SunButter.",
+    risks: [
+      { flavor: "Plain / Roasted", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
+      { flavor: "Flavored / Mixed varieties", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
+    ],
+    alternatives: "Pumpkin seeds, Dried fruit, Rice crackers",
+  },
 ];
 
 export default function Search() {
@@ -288,7 +357,7 @@ export default function Search() {
       <Hero title="Search Foods" />
 
       <section className="content" style={{ overflow: "auto" }}>
-        <div className="search-bar-container">
+        <div className="search-bar-container" style={{ height: 48 }}>
           <span style={{ fontSize: "1.1rem" }}>🔍</span>
           <input
             type="text"
