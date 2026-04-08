@@ -83,7 +83,6 @@ export default function Scan() {
             </div>
           ))}
         </section>
-        <BottomNav />
       </PhoneFrame>
     );
   }
@@ -163,7 +162,6 @@ export default function Scan() {
         </button>
       </section>
 
-      <BottomNav />
     </PhoneFrame>
   );
 }

@@ -58,6 +58,7 @@ body {
 }
 
 .phone-screen {
+  max-height: 780px;
   min-height: 780px;
   display: flex;
   flex-direction: column;
@@ -68,6 +69,9 @@ body {
     var(--screen-top) 0%,
     var(--screen-bottom) 100%
   );
+  flex-direction: column;
+  height: 100%;
+  position: relative;
 }
 
 .status-bar {
@@ -278,14 +282,26 @@ stats-card a{
   font-weight: 800;
 }
 
+
+.screen-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px; /* prevents content from hiding behind nav */
+}
+
+
 .bottom-nav {
-  display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
   padding: 10px 8px 12px;
   background: rgba(255, 255, 255, 0.5);
   border-top: 1px solid var(--line);
-  margin-top: auto;
+  display: grid; 
+ position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  
 }
 
 .nav-item {
@@ -326,8 +342,13 @@ stats-card a{
   }
 
   .phone-screen {
+    
     min-height: 100vh;
+    max-height: 100vh;
     border-radius: 0;
+    flex-direction: column;
+  height: 100%;
+  position: relative;
   }
 }
 

@@ -40,7 +40,7 @@ export default function EditAllergy() {
             style={{
               listStyle: "none",
               padding: 0,
-              maxHeight: 100,
+              maxHeight: 200,
               overflow: "auto",
             }}
           >
@@ -106,8 +106,6 @@ export default function EditAllergy() {
           Save Changes
         </button>
       </section>
-
-      <BottomNav />
     </PhoneFrame>
   );
 }

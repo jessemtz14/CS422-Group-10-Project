@@ -67,7 +67,6 @@ export default function Profile() {
         </Link>
       </section>
 
-      <BottomNav />
     </PhoneFrame>
   );
 }

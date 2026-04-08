@@ -5,7 +5,7 @@ export default function AllergyList() {
 
   return (
     <ul
-      style={{ listStyle: "none", padding: 0, maxHeight: 75, overflow: "auto" }}
+      style={{ listStyle: "none", padding: 0, maxHeight: 100, overflow: "auto" }}
     >
       {allergies.map((item, i) => (
         <li key={i} className="allergen-item">

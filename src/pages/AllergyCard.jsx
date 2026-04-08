@@ -54,7 +54,6 @@ export default function AllergyCard() {
         </article>
       </section>
 
-      <BottomNav />
     </PhoneFrame>
   );
 }

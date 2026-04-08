@@ -6,7 +6,7 @@ export default function AllergyListMicro() {
   return (
     <ul
       className="grid-container2"
-      style={{ listStyle: "d", padding: 0, maxHeight: 150 }}
+      style={{ listStyle: "d", padding: 0, maxHeight: 200 }}
     >
       {allergies.map((item, i) => (
         <li key={i} className="allergen-item">

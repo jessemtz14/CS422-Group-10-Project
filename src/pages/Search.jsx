@@ -277,7 +277,6 @@ export default function Search() {
           </article>
         </section>
 
-        <BottomNav />
       </PhoneFrame>
     );
   }
@@ -386,7 +385,6 @@ export default function Search() {
         )}
       </section>
 
-      <BottomNav />
     </PhoneFrame>
   );
 }

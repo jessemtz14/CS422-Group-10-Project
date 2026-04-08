@@ -118,7 +118,6 @@ export default function Places() {
           </div>
         </section>
 
-        <BottomNav />
       </PhoneFrame>
     );
   }
@@ -191,7 +190,6 @@ export default function Places() {
         ))}
       </section>
 
-      <BottomNav />
     </PhoneFrame>
   );
 }
