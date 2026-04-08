@@ -1,16 +1,18 @@
-# React + Vite
+# CS422 Group 10 Project
+Bilguutei Turmunkh, 
+Jesse Martinez, 
+Daniel Dedic, 
+ James Bankole, 
+Ethan Irimiciuc
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Link: https://jessemtz14.github.io/CS422-Group-10-Project/  
 
-Currently, two official plugins are available:
+## Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Running Locally (On Mac):
+1. On this repo, clone the code
+2. Install node if not installed. To check if it’s installed or not, run: “node –version.”
+3. To install node, run “brew install node.”
+4. Run “npm install” once, to install dependencies
+5. Run “npm run dev.”
+6. Open the link
