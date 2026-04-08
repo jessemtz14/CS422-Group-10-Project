@@ -13,7 +13,7 @@ export default function AllergyCard() {
       <section className="content">
         <article
           className="card card-highlight-gray"
-          style={{ maxHeight: 650, overflow: "auto" }}
+         
         >
           <h2
             className="card card-highlight-alert"
