@@ -4,290 +4,56 @@ import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
 import { useAllergies } from "../context/AllergyContext";
 import { useState } from "react";
-
+import { FOODS } from "../data/foods";
 // Food database
-const FOODS = [
-  {
-    name: "Gelato",
-    desc: "Italian frozen dessert",
-    icon: "🍨",
-    safety: "caution",
-    safetyLabel: "USE CAUTION",
-    safetyNote: "May contain allergens depending on flavor",
-    about: "Gelato is an Italian-style frozen dessert made from milk, cream, sugar, and flavorings. While the base is typically nut-free, many popular flavors contain tree nuts or are produced alongside nut-based flavors.",
-    risks: [
-      { flavor: "Pistachio", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Hazelnut / Nocciola", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Chocolate", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
-      { flavor: "Vanilla / Strawberry", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
-    ],
-    alternatives: "Talenti Sorbetto, Fruit-based gelato, Coconut milk ice cream",
-  },
-  {
-    name: "Gelato (Pistachio)",
-    desc: "Pistachio-flavored gelato",
-    icon: "🟢",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Contains tree nuts (pistachio)",
-    about: "Pistachio gelato is made with real pistachio nuts blended into the cream base. It directly contains tree nuts and is unsafe for anyone with a tree nut allergy.",
-    risks: [
-      { flavor: "Pistachio Nut Content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Cross-contact", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "Vanilla gelato, Strawberry sorbet, Lemon sorbet",
-  },
-  {
-    name: "Gelato (Hazelnut)",
-    desc: "Hazelnut-flavored gelato",
-    icon: "🟤",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Contains tree nuts (hazelnut)",
-    about: "Hazelnut gelato, also called Nocciola, is made with real hazelnuts. It contains tree nuts and is not safe for those with nut allergies.",
-    risks: [
-      { flavor: "Hazelnut Content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Cross-contact", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "Chocolate sorbet, Vanilla bean gelato, Fruit gelato",
-  },
-  {
-    name: "Praline",
-    desc: "Sugar-coated nut confection",
-    icon: "🍬",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Made primarily from nuts and sugar",
-    about: "Pralines are a confection made from nuts (typically almonds, pecans, or hazelnuts) cooked in boiling sugar. They are fundamentally a nut-based product and are not safe for those with nut allergies.",
-    risks: [
-      { flavor: "Almonds / Pecans", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Hazelnuts", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Peanut varieties", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "Caramel candies (nut-free), Toffee (check label), Hard candies",
-  },
-  {
-    name: "Marzipan",
-    desc: "Almond-based confection",
-    icon: "🟡",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Primary ingredient is almonds (tree nut)",
-    about: "Marzipan is a confection made from ground almonds, sugar, and often egg whites. Since almonds are the main ingredient, marzipan is not safe for anyone with a tree nut allergy.",
-    risks: [
-      { flavor: "Almond Content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Cross-contact in bakeries", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "Fondant, Modeling chocolate, Bean paste (Japanese wagashi)",
-  },
-  {
-    name: "Nougat",
-    desc: "Chewy candy with nuts",
-    icon: "🍫",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Typically contains almonds, pistachios, or other nuts",
-    about: "Nougat is a chewy confection made from sugar, honey, egg whites, and typically mixed with roasted nuts. Most traditional nougat recipes include almonds or pistachios.",
-    risks: [
-      { flavor: "Almonds", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Pistachios", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Peanuts (some brands)", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
-    ],
-    alternatives: "Marshmallows, Turkish delight (nut-free), Fruit leather",
-  },
-  {
-    name: "Pesto",
-    desc: "Italian basil sauce",
-    icon: "🌿",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Traditional recipe contains pine nuts",
-    about: "Pesto is a sauce made from basil, garlic, parmesan cheese, olive oil, and pine nuts. While pine nuts are technically seeds, they are classified as tree nuts for allergy purposes and can trigger reactions.",
-    risks: [
-      { flavor: "Pine Nuts", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Cross-contact", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
-    ],
-    alternatives: "Nut-free pesto (sunflower seed based), Marinara sauce, Chimichurri",
-  },
-  {
-    name: "Hummus",
-    desc: "Chickpea-based dip",
-    icon: "🫘",
-    safety: "safe",
-    safetyLabel: "SAFE FOR ALLERGY",
-    safetyNote: "Typically nut-free, made from chickpeas and tahini",
-    about: "Hummus is made from chickpeas, tahini (sesame paste), lemon juice, and garlic. Traditional hummus does not contain tree nuts or peanuts, though some flavored varieties may add them.",
-    risks: [
-      { flavor: "Plain / Classic", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
-      { flavor: "Flavored varieties", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
-    ],
-    alternatives: "Baba ganoush, Tzatziki, Bean dip",
-  },
-  {
-    name: "Granola",
-    desc: "Oat-based cereal mix",
-    icon: "🥣",
-    safety: "caution",
-    safetyLabel: "USE CAUTION",
-    safetyNote: "Many brands contain tree nuts or peanuts",
-    about: "Granola is made from rolled oats, honey or sugar, and often includes nuts, seeds, and dried fruits. Many commercial granola products contain almonds, walnuts, or peanuts, or are processed in facilities that handle nuts.",
-    risks: [
-      { flavor: "Most commercial brands", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Nut-free labeled brands", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
-    ],
-    alternatives: "Nut-free granola (Made Good brand), Plain oatmeal, Rice cereal",
-  },
-  {
-    name: "Pad Thai",
-    desc: "Thai stir-fried noodle dish",
-    icon: "🍜",
-    safety: "caution",
-    safetyLabel: "USE CAUTION",
-    safetyNote: "Often topped with crushed peanuts",
-    about: "Pad Thai is a stir-fried rice noodle dish commonly served with crushed peanuts on top. While the noodles and sauce may be nut-free, the peanut topping is standard. Always request no peanuts when ordering.",
-    risks: [
-      { flavor: "Peanut topping", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Peanut in sauce (some recipes)", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
-      { flavor: "Without peanuts (request)", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
-    ],
-    alternatives: "Pho (Vietnamese noodle soup), Lo Mein (check sauce), Rice dishes",
-  },
-  {
-    name: "Nutella",
-    desc: "Hazelnut chocolate spread",
-    icon: "🫙",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Contains hazelnuts (tree nut)",
-    about: "Nutella is a chocolate hazelnut spread. Hazelnuts are a primary ingredient, making it unsafe for anyone with tree nut allergies.",
-    risks: [
-      { flavor: "Hazelnut content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "SunButter (sunflower seed), Biscoff spread, Chocolate syrup",
-  },
-  {
-    name: "Trail Mix",
-    desc: "Mixed nuts, seeds, and dried fruit",
-    icon: "🥜",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Contains multiple types of nuts",
-    about: "Trail mix is a snack blend typically containing peanuts, almonds, cashews, walnuts, and other nuts along with dried fruits and sometimes chocolate. It is not safe for nut allergy sufferers.",
-    risks: [
-      { flavor: "Peanuts", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Tree nuts (various)", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "Seed-based trail mix, Dried fruit mix, Pretzels and raisins",
-  },
-    {
-    name: "Apple",
-    desc: "Common fresh fruit",
-    icon: "🍎",
-    safety: "safe",
-    safetyLabel: "SAFE FOR ALLERGY",
-    safetyNote: "No nuts or common allergens",
-    about: "Apples are a naturally nut-free fruit. They are safe for people with tree nut and peanut allergies. Always wash before eating.",
-    risks: [
-      { flavor: "Plain / Fresh", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
-    ],
-    alternatives: "Any fresh fruit, Pear, Banana",
-  },
-  {
-    name: "Potato Chips",
-    desc: "Salted crispy snack",
-    icon: "🥔",
-    safety: "safe",
-    safetyLabel: "SAFE FOR ALLERGY",
-    safetyNote: "Plain varieties are typically nut-free",
-    about: "Plain potato chips are generally nut-free and safe for those with tree nut or peanut allergies. Always check the label for flavored varieties as some may be processed in facilities that handle nuts.",
-    risks: [
-      { flavor: "Plain / Original", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
-      { flavor: "Flavored varieties", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
-    ],
-    alternatives: "Pretzels, Rice cakes, Popcorn",
-  },
-  {
-    name: "Peanut Butter",
-    desc: "Spread made from ground peanuts",
-    icon: "🥜",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Contains peanuts",
-    about: "Peanut butter is made entirely from ground peanuts. It is one of the most common allergen sources and is not safe for anyone with a peanut allergy. It may also be processed near tree nuts.",
-    risks: [
-      { flavor: "Peanut Content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Cross-contact with tree nuts", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "SunButter (sunflower seed), Tahini, Biscoff spread",
-  },
-  {
-    name: "Almond Milk",
-    desc: "Plant-based milk alternative",
-    icon: "🥛",
-    safety: "unsafe",
-    safetyLabel: "NOT SAFE",
-    safetyNote: "Made from almonds (tree nut)",
-    about: "Almond milk is made by blending almonds with water. Since almonds are a tree nut, almond milk is not safe for anyone with a tree nut allergy. It is commonly found in coffee shops and used as a dairy substitute.",
-    risks: [
-      { flavor: "Almond Content", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-      { flavor: "Cross-contact in facilities", risk: "High Risk", color: "firebrick", bg: "#FF9191" },
-    ],
-    alternatives: "Oat milk, Rice milk, Coconut milk (check label), Soy milk",
-  },
-  {
-    name: "Sunflower Seeds",
-    desc: "Roasted seed snack",
-    icon: "🌻",
-    safety: "safe",
-    safetyLabel: "SAFE FOR ALLERGY",
-    safetyNote: "Seeds are not tree nuts or peanuts",
-    about: "Sunflower seeds are naturally free from tree nuts and peanuts, making them a great snack alternative. They are also commonly used as a base for nut-free spreads like SunButter.",
-    risks: [
-      { flavor: "Plain / Roasted", risk: "Low Risk", color: "#2E7D32", bg: "#C8E6C9" },
-      { flavor: "Flavored / Mixed varieties", risk: "Medium Risk", color: "#7B6B00", bg: "#FFF9C4" },
-    ],
-    alternatives: "Pumpkin seeds, Dried fruit, Rice crackers",
-  },
-];
 
 export default function Search() {
   const [query, setQuery] = useState("");
   const [selectedFood, setSelectedFood] = useState(null);
   const [recentSearches, setRecentSearches] = useState(["Praline", "Marzipan"]);
-  const { addActivity } = useAllergies();
-
+  const { addActivity, allergies } = useAllergies();
+  function isSafe(food) {
+      return food.risks.filter(x => allergies.includes(x.allergen)).length == 0;
+    }
+  function isHighRisk(food) {
+    return food.risks.filter(x => allergies.includes(x.allergen) && x.risk === "High Risk").length > 0;
+  }
   const results = query.length > 0
     ? FOODS.filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
     : [];
 
+  
   function openDetail(food) {
     setSelectedFood(food);
     setRecentSearches((prev) => {
       const filtered = prev.filter((s) => s !== food.name);
       return [food.name, ...filtered].slice(0, 5);
     });
-    const statusLabel = food.safety === "safe" ? "Safe" : food.safety === "unsafe" ? "Avoid" : "Caution";
-    const statusColor = food.safety === "safe" ? "#2E7D32" : food.safety === "unsafe" ? "firebrick" : "#7B6B00";
-    const statusBg = food.safety === "safe" ? "#C8E6C9" : food.safety === "unsafe" ? "#FF9191" : "#FFF9C4";
+    
+    const statusLabel = isSafe(food) ? "Safe" : isHighRisk(food) ? "Avoid" : "Caution";
+    const statusColor = isSafe(food)  ? "#2E7D32" : isHighRisk(food) ? "firebrick" : "#7B6B00";
+    const statusBg = isSafe(food)  ? "#C8E6C9" : isHighRisk(food) === "unsafe" ? "#FF9191" : "#FFF9C4";
     addActivity("🔍", `Searched: ${food.name}`, statusLabel, statusColor, statusBg);
   }
 
   // Detail view
   if (selectedFood) {
     const food = selectedFood;
+    const safe = isSafe(food)
+    const hasHighRisk = isHighRisk(food)
     const bannerClass =
-      food.safety === "safe" ? "scan-banner-safe" :
-      food.safety === "unsafe" ? "scan-banner-unsafe" :
+      safe ? "scan-banner-safe" :
+      hasHighRisk ? "scan-banner-unsafe" :
       "scan-banner-caution";
     const labelColor =
-      food.safety === "safe" ? "#2E7D32" :
-      food.safety === "unsafe" ? "#fff" :
+      safe  ? "#2E7D32" :
+      hasHighRisk  ? "#fff" :
       "#7B6B00";
     const noteColor =
-      food.safety === "unsafe" ? "rgba(255,255,255,0.85)" :
-      food.safety === "safe" ? "var(--muted)" :
+      safe ? "rgba(255,255,255,0.85)" :
+      hasHighRisk  ? "var(--muted)" :
       "#7B6B00";
-
+    
     return (
       <PhoneFrame>
         <StatusBar />
@@ -301,9 +67,9 @@ export default function Search() {
         <section className="content" style={{ overflow: "auto" }}>
           <div className={`scan-banner ${bannerClass}`}>
             <span style={{ fontSize: "2rem" }}>
-              {food.safety === "safe" ? "✅" : food.safety === "unsafe" ? "⛔" : "⚠️"}
+              {safe ? "✅" : hasHighRisk ? "⛔" : "⚠️"}
             </span>
-            <h2 style={{ margin: "4px 0 0", color: labelColor }}>{food.safetyLabel}</h2>
+            <h2 style={{ margin: "4px 0 0", color: labelColor }}>{safe ? "SAFE FOR YOU" : hasHighRisk ? "UNSAFE" : "USE CAUTION"}</h2>
             <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: noteColor }}>
               {food.safetyNote}
             </p>
@@ -318,7 +84,7 @@ export default function Search() {
 
           <article className="card card-highlight">
             <h3 style={{ fontSize: "0.95rem", marginBottom: 8 }}>Risk Breakdown</h3>
-            {food.risks.map((r, i) => (
+            {food.risks.filter(x => allergies.includes(x.allergen)).map((r, i) => (
               <div
                 key={i}
                 style={{
@@ -391,16 +157,17 @@ export default function Search() {
                   <strong style={{ fontSize: "0.9rem" }}>{item.name}</strong>
                   <p style={{ margin: 0, color: "var(--muted)", fontSize: "0.8rem" }}>{item.desc}</p>
                 </div>
+                
                 <span
                   className="warn-notice"
                   style={{
                     fontSize: "0.65rem",
                     padding: "3px 8px",
-                    color: item.safety === "safe" ? "#2E7D32" : item.safety === "unsafe" ? "firebrick" : "#7B6B00",
-                    background: item.safety === "safe" ? "#C8E6C9" : item.safety === "unsafe" ? "#FF9191" : "#FFF9C4",
+                    color: isSafe(item) ? "#2E7D32" : isHighRisk(item) ? "firebrick" : "#7B6B00",
+                    background: isSafe(item)  ? "#C8E6C9" : isHighRisk(item) ? "#FF9191" : "#FFF9C4",
                   }}
                 >
-                  {item.safety === "safe" ? "Safe" : item.safety === "unsafe" ? "Unsafe" : "Caution"}
+                  {isSafe(item) ? "Safe" :  isHighRisk(item) ? "Unsafe" : "Caution"}
                 </span>
               </div>
             ))}
@@ -440,11 +207,11 @@ export default function Search() {
                       style={{
                         fontSize: "0.65rem",
                         padding: "3px 8px",
-                        color: food.safety === "safe" ? "#2E7D32" : food.safety === "unsafe" ? "firebrick" : "#7B6B00",
-                        background: food.safety === "safe" ? "#C8E6C9" : food.safety === "unsafe" ? "#FF9191" : "#FFF9C4",
+                        color: isSafe(food) ? "#2E7D32" : isHighRisk(food)? "firebrick" : "#7B6B00",
+                        background: isSafe(food) ? "#C8E6C9" :  isHighRisk(food)? "#FF9191" : "#FFF9C4",
                       }}
                     >
-                      {food.safety === "safe" ? "Safe" : food.safety === "unsafe" ? "Unsafe" : "Caution"}
+                      {isSafe(food)  ? "Safe" :  isHighRisk(food) ? "Unsafe" : "Caution"}
                     </span>
                   )}
                 </div>
