@@ -83,7 +83,11 @@ body {
 }
 
 .hero {
-  padding: 20px 20px 14px;
+  padding: 24px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .eyebrow,
@@ -105,11 +109,12 @@ body {
 }
 
 .hero h1 {
-  margin: 8px 0 10px;
-  font-size: 2.2rem;
-  line-height: 1;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
   text-align: center;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .hero-copy {
@@ -253,7 +258,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
-stats-card a{
+stats-card a {
   width: 100%;
 }
 
@@ -282,25 +287,22 @@ stats-card a{
   font-weight: 800;
 }
 
-
 .screen-scroll {
   flex: 1;
   overflow-y: auto;
 }
-
 
 .bottom-nav {
   grid-template-columns: repeat(5, 1fr);
   padding: 10px 8px 12px;
   background: rgba(255, 255, 255, 0.5);
   border-top: 1px solid var(--line);
-  display: grid; 
- position: sticky;
+  display: grid;
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 10;
-  
 }
 
 .nav-item {
@@ -341,13 +343,12 @@ stats-card a{
   }
 
   .phone-screen {
-    
     min-height: 100vh;
     max-height: 100vh;
     border-radius: 0;
     flex-direction: column;
-  height: 100%;
-  position: relative;
+    height: 100%;
+    position: relative;
   }
 }
 
@@ -451,15 +452,15 @@ stats-card a{
   gap: 24px;
 }
 
-.camera-frame{
+.camera-frame {
   width: 100%;
   min-height: 280px;
-  border: 2px solid rgba(0,0,0,0.12);
+  border: 2px solid rgba(0, 0, 0, 0.12);
   border-radius: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(225,225,225,0.85);
+  background: rgba(225, 225, 225, 0.85);
 }
 
 /* .camera-viewfinder {
@@ -532,18 +533,18 @@ a {
 }
 
 .scan-banner-safe {
-  background: #E8F5E9;
-  border: 1px solid #C8E6C9;
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
 }
 
 .scan-banner-unsafe {
-  background: #D32F2F;
+  background: #d32f2f;
   color: #fff;
 }
 
 .scan-banner-caution {
-  background: #FFF9C4;
-  border: 1px solid #F9A825;
+  background: #fff9c4;
+  border: 1px solid #f9a825;
 }
 
 /* Search bar */
@@ -642,18 +643,18 @@ a {
 }
 
 .scan-banner-safe {
-  background: #E8F5E9;
-  border: 1px solid #C8E6C9;
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
 }
 
 .scan-banner-unsafe {
-  background: #D32F2F;
+  background: #d32f2f;
   color: #fff;
 }
 
 .scan-banner-caution {
-  background: #FFF9C4;
-  border: 1px solid #F9A825;
+  background: #fff9c4;
+  border: 1px solid #f9a825;
 }
 
 /* Search bar */

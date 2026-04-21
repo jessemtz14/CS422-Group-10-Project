@@ -11,10 +11,7 @@ export default function AllergyCard() {
       <StatusBar />
 
       <section className="content">
-        <article
-          className="card card-highlight-gray"
-         
-        >
+        <article className="card card-highlight-gray">
           <h2
             className="card card-highlight-alert"
             style={{ textAlign: "center" }}
@@ -40,11 +37,11 @@ export default function AllergyCard() {
           </ul>
 
           <h2 className="card-label-hard">Must Avoid:</h2>
-          <p className="card-label-hard">
+          <ul className="card-label-hard">
             Almonds, cashews, walnuts, pecans, pistachios, hazelnuts, macadamia
             nuts, Brazil nuts, peanuts, peanut oil, peanut butter, and any
             products processed in facilities that handle these items.
-          </p>
+          </ul>
 
           <h2 className="card-label-hard">Emergency Contact</h2>
           <p className="card-label-hard">
@@ -53,7 +50,6 @@ export default function AllergyCard() {
           </p>
         </article>
       </section>
-
     </PhoneFrame>
   );
 }
