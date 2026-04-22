@@ -11,42 +11,100 @@ export default function AllergyCard() {
       <StatusBar />
 
       <section className="content">
-        <article className="card card-highlight-gray">
+        {/* frame 1: allergy alert */}
+        <article
+          className="card card-highlight-alert-2"
+          style={{ border: "2px solid red" }}
+        >
           <h2
             className="card card-highlight-alert"
-            style={{ textAlign: "center" }}
+            style={{ textAlign: "center", color: "white" }}
           >
             ALLERGY ALERT
           </h2>
 
-          <h2 className="card-label-hard">John Doe</h2>
+          {/* <p className="card-label-hard">Patient Name</p> */}
+          <p className="card-value">John Doe</p>
+
           <h3 className="card-label-hard">Date of Birth: Jan 15, 2007</h3>
 
-          <h2 className="card-label-hard" style={{ color: "red" }}>
+          <h2
+            className="card-label-hard"
+            style={{ color: "red", marginTop: "10px" }}
+          >
             ALLERGIC TO:
           </h2>
 
-          <ul style={{ listStyle: "none", padding: 0 }}>
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "6px",
+            }}
+          >
             {allergies.map((item, i) => (
-              <li key={i} className="card card-highlight-alert-2">
-                <h2 className="card-label-hard" style={{ color: "red" }}>
-                  {item}
-                </h2>
+              <li
+                key={i}
+                style={{
+                  background: "#fee2e2",
+                  padding: "4px 12px",
+                  borderRadius: "12px",
+                  color: "red",
+                  fontWeight: "bold",
+                }}
+              >
+                {item}
               </li>
             ))}
           </ul>
 
-          <h2 className="card-label-hard">Must Avoid:</h2>
-          <ul className="card-label-hard">
-            Almonds, cashews, walnuts, pecans, pistachios, hazelnuts, macadamia
-            nuts, Brazil nuts, peanuts, peanut oil, peanut butter, and any
-            products processed in facilities that handle these items.
+          <h2 className="card-label-hard" style={{ marginBottom: "8px" }}>
+            Must Avoid:
+          </h2>
+          <ul
+            style={{
+              paddingLeft: "20px",
+              margin: 0,
+              fontSize: "0.95rem",
+              lineHeight: "1.6",
+              color: "#333",
+            }}
+          >
+            <li>Almonds, cashews, walnuts, pecans</li>
+            <li>Pistachios, hazelnuts, macadamia nuts</li>
+            <li>Brazil nuts, peanuts</li>
+            <li>Peanut oil & peanut butter</li>
           </ul>
+        </article>
 
-          <h2 className="card-label-hard">Emergency Contact</h2>
-          <p className="card-label-hard">
-            Sarah Doe (Mother) –{" "}
-            <span className="bold-italic">(312) 522-0198</span>
+        {/* frame 2: emergency contact */}
+        <article
+          className="card"
+          style={{ border: "2px solid #1b1b1b", background: "#fff" }}
+        >
+          <h2 className="card-label-hard" style={{ marginBottom: "8px" }}>
+            Emergency Contact
+          </h2>
+          <p className="card-value" style={{ margin: 0, fontSize: "1.1rem" }}>
+            Sarah Doe (Mother)
+          </p>
+          <p
+            className="card-value"
+            style={{ color: "firebrick", fontSize: "1.2rem", fontWeight: 900 }}
+          >
+            (312) 522-0198
+          </p>
+          <p> </p>
+          <p
+            style={{
+              fontSize: "0.8rem",
+              marginTop: "10px",
+              fontStyle: "italic",
+            }}
+          >
+            In case of reaction, use Epipen and call 911.
           </p>
         </article>
       </section>
