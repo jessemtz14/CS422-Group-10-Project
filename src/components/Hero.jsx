@@ -15,8 +15,13 @@ function Title({ t, back }) {
 export default function Hero({ eyebrow, title, children, back }) {
   return (
     <section className="hero">
-      <p className="eyebrow">{eyebrow}</p>
-      <Title t={title} back={back}></Title>
+      {back && (
+        <NavLink className="hero-back-button" to={back}>
+          ←
+        </NavLink>
+      )}
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
       {children}
     </section>
   );

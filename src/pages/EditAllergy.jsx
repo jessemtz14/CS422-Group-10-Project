@@ -80,11 +80,11 @@ export default function EditAllergy() {
                   <button
                     className="warn-notice-fill"
                     style={{
-                      marginLeft: "auto",
                       background:
                         selectedAllergies.some((x) => x === item) ? "green" : (
                           "white"
                         ),
+                      width: "90%",
                     }}
                     onClick={() => addAllergy(item)}
                   >

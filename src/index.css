@@ -96,11 +96,33 @@ body {
 }
 
 .hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 24px 20px;
   background: #ffffff;
   border-bottom: 1px solid var(--line);
   margin-bottom: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.hero-back-button {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 800;
+  padding: 8px;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
 }
 
 .eyebrow,
@@ -393,23 +415,20 @@ stats-card a {
   border-bottom: 1px solid #ddd;
 }
 
-.warn-notice {
-  border: 0;
-  border-radius: 999px;
-  padding: 8px 18px;
-  font: inherit;
-  font-weight: 800;
-}
-
+.warn-notice,
 .warn-notice-fill {
   border: 0;
   border-radius: 999px;
   padding: 8px 18px;
   font: inherit;
   font-weight: 800;
-  display: block;
-  width: 100%;
-  padding: 14px;
+  cursor: default;
+}
+
+button.warn-notice,
+button.warn-notice-fill,
+a .warn-notice {
+  cursor: pointer;
 }
 
 .bold-italic {
@@ -474,13 +493,22 @@ input[type="search"] {
 }
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Three equal columns */
-  gap: 20px; /* Spacing between items */
-  list-style: none; /* Remove bullets */
-  padding: 0; /* Remove default padding */
-  overflow-y: auto;
-  height: 140px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  list-style: none;
+  padding: 10px 0;
+  justify-items: center;
+  align-items: center;
 }
+
+.grid-container .allergen-item {
+  border-bottom: none;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .grid-container2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Three equal columns */
