@@ -3,19 +3,27 @@ import StatusBar from "../components/StatusBar";
 import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
 import { useAllergies } from "../context/AllergyContext";
+import { allergyDatabase } from "../data/allergies";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function EditAllergy() {
-  const { allergies, setAllergies } = useAllergies();
-  const { selectedAllergies, setSelectedAllergies } = useAllergies();
-  const { allergiesData } = useAllergies();
+  const { 
+    allergies, 
+    setAllergies, 
+    selectedAllergies, 
+    setSelectedAllergies, 
+    allergiesData 
+  } = useAllergies();
+
   const [input, setInput] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     setSelectedAllergies(allergies);
   }, [allergies, setSelectedAllergies]);
+
   const addAllergy = (e) => {
     if (!selectedAllergies.some((x) => x === e)) {
       setSelectedAllergies([...selectedAllergies, e]);
@@ -74,21 +82,21 @@ export default function EditAllergy() {
           />
           <ul className="grid-container">
             {allergiesData
-              .filter((x) => x.toLowerCase().includes(input.toLowerCase()))
-              .map((item, i) => (
-                <li key={i} className="allergen-item">
+              .filter((item) => item.name.toLowerCase().includes(input.toLowerCase()))
+              .map((item) => (
+                <li key={item.id} className="allergen-item">
                   <button
                     className="warn-notice-fill"
                     style={{
                       background:
-                        selectedAllergies.some((x) => x === item) ? "green" : (
+                        selectedAllergies.some((x) => x === item.name) ? "green" : (
                           "white"
                         ),
                       width: "90%",
                     }}
-                    onClick={() => addAllergy(item)}
+                    onClick={() => addAllergy(item.name)}
                   >
-                    {item}
+                    {item.name}
                   </button>
                 </li>
               ))}

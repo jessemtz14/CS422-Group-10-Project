@@ -1,20 +1,10 @@
 import { createContext, useContext, useState } from "react";
-
+import { allergyDatabase } from "../data/allergies";
 const AllergyContext = createContext();
 
 export function AllergyProvider({ children }) {
   const [allergies, setAllergies] = useState(["Peanuts"]);
-  const [allergiesData] = useState([
-    "Tree Nuts",
-    "Peanuts",
-    "Dairy",
-    "Shellfish",
-    "Eggs",
-    "Wheat",
-    "Soybeans",
-    "Sesame",
-    "Fish",
-  ]);
+  const [allergiesData] = useState(allergyDatabase); 
   const [selectedAllergies, setSelectedAllergies] = useState([]);
 
   // Activity tracking
