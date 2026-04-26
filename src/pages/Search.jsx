@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import { useAllergies } from "../context/AllergyContext";
 import { useState } from "react";
 import { FOODS } from "../data/foods";
+import ExpandableText from "../components/ExpandableText";
 // Food database
 
 export default function Search() {
@@ -117,52 +118,56 @@ export default function Search() {
           </div>
 
           <article className="card card-highlight">
-            <h3 style={{ fontSize: "0.95rem", marginBottom: 6 }}>
-              What is {food.name}?
-            </h3>
-            <p
-              style={{
-                margin: 0,
-                color: "var(--muted)",
-                fontSize: "0.85rem",
-                lineHeight: 1.6,
-              }}
-            >
-              {food.about}
-            </p>
+            <ExpandableText food={food.name} text={food.about} />
           </article>
 
           <article className="card card-highlight">
             <h3 style={{ fontSize: "0.95rem", marginBottom: 8 }}>
               Risk Breakdown
             </h3>
-            {food.risks
-              .filter((x) => allergies.includes(x.allergen))
-              .map((r, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "8px 0",
-                    borderTop: i > 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
-                  }}
-                >
-                  <span style={{ fontSize: "0.85rem" }}>{r.flavor}</span>
-                  <span
-                    className="warn-notice"
+            {(
+              food.risks.filter((x) => allergies.includes(x.allergen)).length ==
+              0
+            ) ?
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--muted)",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.6,
+                }}
+              >
+                {" "}
+                No risks found.
+              </p>
+            : food.risks
+                .filter((x) => allergies.includes(x.allergen))
+                .map((r, i) => (
+                  <div
+                    key={i}
                     style={{
-                      color: r.color,
-                      background: r.bg,
-                      fontSize: "0.75rem",
-                      padding: "4px 10px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "8px 0",
+                      borderTop: i > 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
                     }}
                   >
-                    {r.risk}
-                  </span>
-                </div>
-              ))}
+                    <span style={{ fontSize: "0.85rem" }}>{r.flavor}</span>
+                    <span
+                      className="warn-notice"
+                      style={{
+                        color: r.color,
+                        background: r.bg,
+                        fontSize: "0.75rem",
+                        padding: "4px 10px",
+                      }}
+                    >
+                      {r.risk}
+                    </span>
+                  </div>
+                ))
+            }
           </article>
 
           <article className="card card-highlight">

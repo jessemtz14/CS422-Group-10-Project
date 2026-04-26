@@ -2,7 +2,7 @@ import { useAllergies } from "../context/AllergyContext";
 
 export default function AllergyList() {
   const { allergies } = useAllergies();
-
+  if(allergies.length != 0) {
   return (
     <ul
       style={{ listStyle: "none", padding: 0, maxHeight: 100, overflow: "auto" }}
@@ -21,7 +21,14 @@ export default function AllergyList() {
             Severe
           </span>
         </li>
-      ))}
+      ))
+      }
+      
     </ul>
   );
+  } else {
+    return (
+    <p>No allergies selected.</p>
+    )
+  }
 }
