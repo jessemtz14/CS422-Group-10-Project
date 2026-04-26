@@ -4,34 +4,14 @@ import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
 import { useAllergies } from "../context/AllergyContext";
 import { useState } from "react";
-
-const PRODUCTS = [
-  {
-    id: "unsafe",
-    name: "Nature Valley Crunchy Granola Bar",
-    subtitle: "Oats 'n Honey — 1.49 oz (42g)",
-    safe: false,
-    ingredients:
-      "Whole Grain Oats, Sugar, Canola Oil, Rice Flour, Honey, Salt, Brown Sugar Syrup, Baking Soda, Soy Lecithin, Natural Flavor.",
-    detected: [
-      { name: "Almonds", detail: "Tree Nut — listed in ingredients" },
-      { name: "Peanut Butter", detail: "Peanut — listed in ingredients" },
-    ],
-  },
-  {
-    id: "safe",
-    name: "Lay's Classic Potato Chips",
-    subtitle: "Potato Chips — 2.0 oz (42g)",
-    safe: true,
-    ingredients: "Potatoes, Vegetable Oil, Salt, Sugar",
-    detected: [],
-  },
-];
+import { PRODUCTS } from "../data/scans";
 
 export default function Scan() {
   const [scanResult, setScanResult] = useState(null);
-  const { addActivity } = useAllergies();
-
+  const { addActivity, allergies } = useAllergies();
+  function isSafe(item) {
+      return item.detected.filter(x => allergies.includes(x.allergen)).length == 0;
+  }
   function handleScan(product) {
     setScanResult(product);
     if (product.safe) {
@@ -114,12 +94,12 @@ export default function Scan() {
               <span
                 className="warn-notice"
                 style={{
-                  background: p.safe ? "#C8E6C9" : "#FF9191",
-                  color: p.safe ? "#2E7D32" : "firebrick",
+                  background: isSafe(p)  ? "#C8E6C9" : "#FF9191",
+                  color: isSafe(p)  ? "#2E7D32" : "firebrick",
                   fontSize: "0.75rem",
                 }}
               >
-                {p.safe ? "Safe" : "Unsafe"}
+                {isSafe(p) ? "Safe" : "Unsafe"}
               </span>
             </div>
           ))}
@@ -130,6 +110,7 @@ export default function Scan() {
 
   // Scan result view
   const p = scanResult;
+  
   return (
     <PhoneFrame>
       <StatusBar />
@@ -146,7 +127,7 @@ export default function Scan() {
       </section>
 
       <section className="content" style={{ overflow: "auto" }}>
-        {p.safe ?
+        {isSafe(p)  ?
           <div className="scan-banner scan-banner-safe">
             <span style={{ fontSize: "2rem" }}>✅</span>
             <h2 style={{ margin: "4px 0 0", color: "#2E7D32" }}>
@@ -185,7 +166,7 @@ export default function Scan() {
           </p>
         </article>
 
-        {p.safe ?
+        {isSafe(p)  ?
           <article className="card" style={{ border: "2px solid #C8E6C9" }}>
             <h3
               style={{ color: "#2E7D32", fontSize: "0.95rem", marginBottom: 8 }}
@@ -220,7 +201,7 @@ export default function Scan() {
               >
                 ⚠️ Detected Allergens
               </h3>
-              {p.detected.map((d, i) => (
+              {p.detected.filter(x => allergies.includes(x.allergen)).map((d, i) => (
                 <div
                   key={i}
                   style={{
@@ -263,7 +244,7 @@ export default function Scan() {
               >
                 {p.ingredients}{" "}
                 <span style={{ color: "firebrick", fontWeight: 700 }}>
-                  Contains: {p.detected.map((d) => d.name).join(", ")}
+                  Contains: {p.detected.filter(x => allergies.includes(x.allergen)).map((d) => d.name).join(", ")}
                 </span>
                 .
               </p>
