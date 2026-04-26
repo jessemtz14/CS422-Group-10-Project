@@ -11,36 +11,14 @@ export default function Places() {
   const [activePin, setActivePin] = useState(null);
   const { addActivity } = useAllergies();
 
-  const getPinStyle = (letter) => {
-    switch (letter) {
-      case "A":
-        return {
-          container: {
-            flexDirection: "row",
-            alignItems: "center",
-            transform: "translate(-100%, -50%)",
-          },
-          callout: { marginRight: "12px", marginBottom: 0 },
-        };
-      case "B":
-      case "C":
-        return {
-          container: {
-            flexDirection: "column-reverse",
-            transform: "translate(-50%, 0)",
-          },
-          callout: { marginTop: "12px", marginBottom: 0 },
-        };
-      default:
-        return {
-          container: {
-            flexDirection: "column",
-            alignItems: "center",
-            transform: "translate(-50%, -100%)",
-          },
-          callout: { marginBottom: "4px" },
-        };
-    }
+  const getPinStyle = () => {
+    return {
+      container: {
+        flexDirection: "column-reverse",
+        transform: "translate(-50%, 0)",
+      },
+      callout: { marginRight: "12px", marginBottom: 0 },
+    };
   };
 
   function selectRestaurant(r) {
@@ -76,15 +54,14 @@ export default function Places() {
       <PhoneFrame>
         <StatusBar />
         <section className="hero">
-          <h1 style={{ textAlign: "left" }}>
-            <span
-              onClick={() => setSelected(null)}
-              style={{ cursor: "pointer" }}
-            >
-              ←{" "}
-            </span>
-            {r.name}
-          </h1>
+          <span
+            className="hero-back-button"
+            onClick={() => setSelected(null)}
+            style={{ cursor: "pointer" }}
+          >
+            ←
+          </span>
+          <h1>{r.name}</h1>
         </section>
 
         <section className="content" style={{ overflow: "auto" }}>
@@ -220,7 +197,7 @@ export default function Places() {
 
           {/* Pins */}
           {RESTAURANTS.map((r) => {
-            const styleConfig = getPinStyle(r.letter);
+            const styleConfig = getPinStyle();
             return (
               <div
                 key={r.letter}
@@ -231,7 +208,11 @@ export default function Places() {
                 }
               >
                 {activePin === r.letter && (
-                  <div className="pin-callout" style={styleConfig.callout}>
+                  <div
+                    className="pin-callout"
+                    style={{ ...styleConfig.callout, cursor: "default" }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <strong>{r.name}</strong>
                     <div style={{ color: r.safetyColor, fontWeight: 600 }}>
                       {r.safety} · {r.dist}
