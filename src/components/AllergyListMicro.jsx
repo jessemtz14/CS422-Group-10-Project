@@ -2,7 +2,7 @@ import { useAllergies } from "../context/AllergyContext";
 
 export default function AllergyListMicro() {
   const { allergies } = useAllergies();
-
+  if(allergies.length != 0) {
   return (
     <ul
       className="grid-container2"
@@ -20,4 +20,9 @@ export default function AllergyListMicro() {
       ))}
     </ul>
   );
+    } else {
+    return (
+    <p>No allergies selected.</p>
+    )
+  }
 }

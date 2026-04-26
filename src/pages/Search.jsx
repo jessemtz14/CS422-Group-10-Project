@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import { useAllergies } from "../context/AllergyContext";
 import { useState } from "react";
 import { FOODS } from "../data/foods";
+import ExpandableText from "../components/ExpandableText";
 // Food database
 
 export default function Search() {
@@ -76,15 +77,15 @@ export default function Search() {
           </div>
 
           <article className="card card-highlight">
-            <h3 style={{ fontSize: "0.95rem", marginBottom: 6 }}>What is {food.name}?</h3>
-            <p style={{ margin: 0, color: "var(--muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>
-              {food.about}
-            </p>
+            
+            <ExpandableText food={food.name} text= {food.about} />
           </article>
 
           <article className="card card-highlight">
             <h3 style={{ fontSize: "0.95rem", marginBottom: 8 }}>Risk Breakdown</h3>
-            {food.risks.filter(x => allergies.includes(x.allergen)).map((r, i) => (
+            {food.risks.filter(x => allergies.includes(x.allergen)).length == 0 
+            ? <p style={{ margin: 0, color: "var(--muted)", fontSize: "0.85rem", lineHeight: 1.6 }}> No risks found.</p> 
+            : food.risks.filter(x => allergies.includes(x.allergen)).map((r, i) => (
               <div
                 key={i}
                 style={{
@@ -102,6 +103,9 @@ export default function Search() {
                 </span>
               </div>
             ))}
+
+             
+
           </article>
 
           <article className="card card-highlight">
