@@ -249,15 +249,21 @@ export default function Scan() {
                   lineHeight: 1.5,
                 }}
               >
-                {p.ingredients}{" "}
-                <span style={{ color: "firebrick", fontWeight: 700 }}>
-                  Contains:{" "}
-                  {p.detected
-                    .filter((x) => allergies.includes(x.allergen))
-                    .map((d) => d.name)
-                    .join(", ")}
-                </span>
-                .
+                {p.ingredients}
+              </p>
+              <p
+                style={{
+                  margin: "8px 0 0",
+                  color: "firebrick",
+                  fontWeight: 700,
+                  fontSize: "0.8rem",
+                }}
+              >
+                Contains:{" "}
+                {p.detected
+                  .filter((x) => allergies.includes(x.allergen))
+                  .map((d) => d.name)
+                  .join(", ")}
               </p>
             </article>
           </>
