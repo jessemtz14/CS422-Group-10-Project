@@ -28,6 +28,10 @@ export default function Profile() {
       </Hero>
 
       <section className="content">
+        <Link to="/allergy-card">
+          <button className="primary-button" style={{ marginTop: 0 }}>View Allergy Card</button>
+        </Link>
+
         <article className="card card-highlight">
           <div
             style={{
@@ -63,9 +67,6 @@ export default function Profile() {
             <h3 className="card-label">{contactNumber}</h3>
           </div>
         </article>
-        <Link to="/allergy-card">
-          <button className="primary-button">View Allergy Card</button>
-        </Link>
       </section>
 
     </PhoneFrame>

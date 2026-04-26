@@ -3,18 +3,18 @@ import StatusBar from "../components/StatusBar";
 import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
 import { useAllergies } from "../context/AllergyContext";
-import { allergyDatabase } from "../data/allergies";
+// import { allergyDatabase } from "../data/allergies";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function EditAllergy() {
-  const { 
-    allergies, 
-    setAllergies, 
-    selectedAllergies, 
-    setSelectedAllergies, 
-    allergiesData 
+  const {
+    allergies,
+    setAllergies,
+    selectedAllergies,
+    setSelectedAllergies,
+    allergiesData,
   } = useAllergies();
 
   const [input, setInput] = useState("");
@@ -82,16 +82,17 @@ export default function EditAllergy() {
           />
           <ul className="grid-container">
             {allergiesData
-              .filter((item) => item.name.toLowerCase().includes(input.toLowerCase()))
+              .filter((item) =>
+                item.name.toLowerCase().includes(input.toLowerCase()),
+              )
               .map((item) => (
                 <li key={item.id} className="allergen-item">
                   <button
                     className="warn-notice-fill"
                     style={{
                       background:
-                        selectedAllergies.some((x) => x === item.name) ? "green" : (
-                          "white"
-                        ),
+                        selectedAllergies.some((x) => x === item.name) ? "green"
+                        : "white",
                       width: "90%",
                     }}
                     onClick={() => addAllergy(item.name)}
@@ -105,13 +106,26 @@ export default function EditAllergy() {
 
         <button
           className="primary-button"
-          style={{ background: "green" }}
+          style={{ background: "green", marginTop: "5px" }}
           onClick={() => {
             setAllergies(selectedAllergies);
             navigate("/profile");
           }}
         >
           Save Changes
+        </button>
+
+        <button
+          className="primary-button"
+          style={{
+            background: "var(--line)",
+            color: "var(--text)",
+            marginTop: "1px",
+            border: "1px solid rgba(0,0,0,0.1)",
+          }}
+          onClick={() => navigate("/profile")}
+        >
+          Cancel
         </button>
       </section>
     </PhoneFrame>
