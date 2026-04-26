@@ -4,8 +4,9 @@ import BottomNav from "../components/BottomNav";
 import Hero from "../components/Hero";
 import AllergyList from "../components/AllergyList";
 import { Link } from "react-router-dom";
-
+import { useAllergies } from "../context/AllergyContext";
 export default function Profile() {
+  const { contactName, contactNumber, contactRole } = useAllergies();
   return (
     <PhoneFrame>
       <StatusBar />
@@ -53,13 +54,13 @@ export default function Profile() {
             }}
           >
             <h3 className="card-label">Emergency Contact</h3>
-            <Link to="/profile" style={{ marginLeft: "auto" }}>
+            <Link to="/edit-contact" style={{ marginLeft: "auto" }}>
               <button className="warn-notice">Edit✏️</button>
             </Link>
           </div>
           <div className="feature-list">
-            <h3 className="card-label-hard">Sarah Doe (Mother)</h3>
-            <h3 className="card-label">(773) 123-4567</h3>
+          <h3 className="card-label-hard">{contactName} ({contactRole})</h3>
+            <h3 className="card-label">{contactNumber}</h3>
           </div>
         </article>
         <Link to="/allergy-card">

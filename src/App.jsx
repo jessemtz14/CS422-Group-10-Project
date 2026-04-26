@@ -8,7 +8,7 @@ import AllergyCard from "./pages/AllergyCard";
 import Scan from "./pages/Scan";
 import Search from "./pages/Search";
 import Places from "./pages/Places";
-
+import EditContact from "./pages/EditContact";
 export default function App() {
   return (
     <AllergyProvider>
@@ -21,6 +21,8 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           {/* is inside Profile section */}
           <Route path="/edit-allergy" element={<EditAllergy />} />{" "}
+          {/* is inside Profile section */}
+          <Route path="/edit-contact" element={<EditContact />} />{" "}
           {/* is inside Profile section */}
           <Route path="/allergy-card" element={<AllergyCard />} />{" "}
         </Routes>

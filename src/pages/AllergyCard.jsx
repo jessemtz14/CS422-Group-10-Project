@@ -4,7 +4,7 @@ import BottomNav from "../components/BottomNav";
 import { useAllergies } from "../context/AllergyContext";
 
 export default function AllergyCard() {
-  const { allergies } = useAllergies();
+  const { allergies, contactName, contactNumber, contactRole } = useAllergies();
 
   return (
     <PhoneFrame>
@@ -88,13 +88,13 @@ export default function AllergyCard() {
             Emergency Contact
           </h2>
           <p className="card-value" style={{ margin: 0, fontSize: "1.1rem" }}>
-            Sarah Doe (Mother)
+            {contactName} ({contactRole})
           </p>
           <p
             className="card-value"
             style={{ color: "firebrick", fontSize: "1.2rem", fontWeight: 900 }}
           >
-            (312) 522-0198
+            {contactNumber}
           </p>
           <p> </p>
           <p

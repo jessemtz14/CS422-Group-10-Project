@@ -4,6 +4,9 @@ const AllergyContext = createContext();
 
 export function AllergyProvider({ children }) {
   const [allergies, setAllergies] = useState(["Peanuts"]);
+  const [contactName, setContactName] = useState(["Sarah Doe"]);
+  const [contactRole, setContactRole] = useState(["Mother"]);
+  const [contactNumber, setContactNumber] = useState(["(773) 123-4567)"]);
   const [allergiesData] = useState(allergyDatabase); 
   const [selectedAllergies, setSelectedAllergies] = useState([]);
 
@@ -35,6 +38,12 @@ export function AllergyProvider({ children }) {
         setSelectedAllergies,
         recentActivity,
         addActivity,
+        contactName,
+        setContactName,
+        contactRole,
+        setContactRole,
+        contactNumber,
+        setContactNumber
       }}
     >
       {children}
