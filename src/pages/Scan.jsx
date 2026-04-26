@@ -10,7 +10,9 @@ export default function Scan() {
   const [scanResult, setScanResult] = useState(null);
   const { addActivity, allergies } = useAllergies();
   function isSafe(item) {
-      return item.detected.filter(x => allergies.includes(x.allergen)).length == 0;
+    return (
+      item.detected.filter((x) => allergies.includes(x.allergen)).length == 0
+    );
   }
   function handleScan(product) {
     setScanResult(product);
@@ -94,8 +96,8 @@ export default function Scan() {
               <span
                 className="warn-notice"
                 style={{
-                  background: isSafe(p)  ? "#C8E6C9" : "#FF9191",
-                  color: isSafe(p)  ? "#2E7D32" : "firebrick",
+                  background: isSafe(p) ? "#C8E6C9" : "#FF9191",
+                  color: isSafe(p) ? "#2E7D32" : "firebrick",
                   fontSize: "0.75rem",
                 }}
               >
@@ -110,24 +112,25 @@ export default function Scan() {
 
   // Scan result view
   const p = scanResult;
-  
+
   return (
     <PhoneFrame>
       <StatusBar />
       <section className="hero">
-        <h1 style={{ textAlign: "left" }}>
-          <span
-            onClick={() => setScanResult(null)}
-            style={{ cursor: "pointer" }}
-          >
-            ←{" "}
-          </span>
-          Scan Result
-        </h1>
+        <span
+          className="hero-back-button"
+          onClick={() => setScanResult(null)}
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          ←
+        </span>
+        <h1>Scan Result</h1>
       </section>
 
       <section className="content" style={{ overflow: "auto" }}>
-        {isSafe(p)  ?
+        {isSafe(p) ?
           <div className="scan-banner scan-banner-safe">
             <span style={{ fontSize: "2rem" }}>✅</span>
             <h2 style={{ margin: "4px 0 0", color: "#2E7D32" }}>
@@ -166,7 +169,7 @@ export default function Scan() {
           </p>
         </article>
 
-        {isSafe(p)  ?
+        {isSafe(p) ?
           <article className="card" style={{ border: "2px solid #C8E6C9" }}>
             <h3
               style={{ color: "#2E7D32", fontSize: "0.95rem", marginBottom: 8 }}
@@ -201,34 +204,38 @@ export default function Scan() {
               >
                 ⚠️ Detected Allergens
               </h3>
-              {p.detected.filter(x => allergies.includes(x.allergen)).map((d, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    padding: "8px 0",
-                    borderTop: i > 0 ? "1px solid #FFCDD2" : "none",
-                  }}
-                >
-                  <span style={{ fontSize: "1.2rem" }}>🚫</span>
-                  <div>
-                    <strong style={{ color: "firebrick", fontSize: "0.9rem" }}>
-                      {d.name}
-                    </strong>
-                    <p
-                      style={{
-                        margin: 0,
-                        color: "var(--muted)",
-                        fontSize: "0.8rem",
-                      }}
-                    >
-                      {d.detail}
-                    </p>
+              {p.detected
+                .filter((x) => allergies.includes(x.allergen))
+                .map((d, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      padding: "8px 0",
+                      borderTop: i > 0 ? "1px solid #FFCDD2" : "none",
+                    }}
+                  >
+                    <span style={{ fontSize: "1.2rem" }}>🚫</span>
+                    <div>
+                      <strong
+                        style={{ color: "firebrick", fontSize: "0.9rem" }}
+                      >
+                        {d.name}
+                      </strong>
+                      <p
+                        style={{
+                          margin: 0,
+                          color: "var(--muted)",
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        {d.detail}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </article>
             <article className="card card-highlight">
               <p className="card-label" style={{ marginBottom: 4 }}>
@@ -244,7 +251,11 @@ export default function Scan() {
               >
                 {p.ingredients}{" "}
                 <span style={{ color: "firebrick", fontWeight: 700 }}>
-                  Contains: {p.detected.filter(x => allergies.includes(x.allergen)).map((d) => d.name).join(", ")}
+                  Contains:{" "}
+                  {p.detected
+                    .filter((x) => allergies.includes(x.allergen))
+                    .map((d) => d.name)
+                    .join(", ")}
                 </span>
                 .
               </p>
